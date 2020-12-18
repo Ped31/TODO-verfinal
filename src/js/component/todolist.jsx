@@ -3,7 +3,7 @@ import Todos from "./todos.jsx";
 import PropTypes from "prop-types";
 
 function TodoList() {
-	const [inputText, setInputText] = useState("");
+	const [inputText, setInputText] = useState(null);
 	const [todos, setTodos] = useState([]);
 
 	const inputTextHandler = e => {
@@ -13,22 +13,17 @@ function TodoList() {
 
 	const submitTodoHandler = e => {
 		e.preventDefault();
-		setTodos([...todos, { label: inputText, done: false }]);
-		setInputText("");
+		if (inputText != "" && inputText != null) {
+			setTodos([...todos, { label: inputText, done: false }]);
+			setInputText("");
+		}
 	};
 
 	return (
 		<div className="todo-list">
-			<form>
-				<input
-					value={inputText}
-					onChange={inputTextHandler}
-					placeholder="new plan here..."
-				/>
-				<button
-					className="todo-button"
-					type="submit"
-					onClick={submitTodoHandler}>
+			<form onClick={submitTodoHandler} onChange={inputTextHandler}>
+				<input value={inputText} placeholder="new plan here..." />
+				<button className="todo-button" type="submit">
 					<i className="far fa-plus-square" />
 				</button>
 

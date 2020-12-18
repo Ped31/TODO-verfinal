@@ -11,7 +11,7 @@ function Todos(props) {
 	return (
 		<div>
 			{props.todos.map((todoObj, index) => {
-				if (todoObj.label != "") {
+				if (todoObj.label != "ghghhggh") {
 					return (
 						<div key={index} className="container">
 							<p>{todoObj.label}</p>
